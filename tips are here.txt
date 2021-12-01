@@ -1,0 +1,3 @@
+ssl error while pushing code to github:
+
+git config --global http.sslVerify false
