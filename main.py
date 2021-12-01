@@ -18,11 +18,6 @@ def check():
     else:
         pass
 
-def set_voice(i):
-    voices = engine.getProperty('voices')  # getting details of current voice
-    # engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
-    engine.setProperty('voice', voices[i].id)  # changing index, changes voices. 1 for female
-
 def speak():
     try:
         check()
@@ -38,6 +33,17 @@ def speak():
         engine.setProperty('volume', 1.0)  # setting up volume level  between 0 and 1
 
         """VOICE"""
+        voices = engine.getProperty('voices')  # getting details of current voice
+        # engine.setProperty('voice', voices[0].id)  #changing index, changes voices. o for male
+        engine.setProperty('voice', voices[0].id)  # changing index, changes voices. 1 for female
+
+        for voice in voices:
+            print("Voice:")
+            print(" - ID: %s" % voice.id)
+            print(" - Name: %s" % voice.name)
+            print(" - Languages: %s" % voice.languages)
+            print(" - Gender: %s" % voice.gender)
+            print(" - Age: %s" % voice.age)
 
 
         new_var=e1.get()
@@ -54,10 +60,6 @@ ans=StringVar()
 e1=Entry(root,font=("Verdana",10),text=ans,width=40)
 e1.pack()
 
-c1 = tkinter.Checkbutton(root, text='Female', onvalue=1, offvalue=0, command=set_voice(0))
-c1.pack()
-c2 = tkinter.Checkbutton(root, text='Male', onvalue=1, offvalue=0, command=set_voice(1))
-c2.pack()
 
 btn=Button(root,text="Speak Now!",fg="blue",command=speak)
 
